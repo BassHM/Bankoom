@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiBankoomer", "ApiBankoomer.csproj", "{30F12999-F94C-4B21-84D2-460E7D999DE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30F12999-F94C-4B21-84D2-460E7D999DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F12999-F94C-4B21-84D2-460E7D999DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F12999-F94C-4B21-84D2-460E7D999DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F12999-F94C-4B21-84D2-460E7D999DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0B73E7A-A85E-4058-B20E-DBB69B9EF63F}
+	EndGlobalSection
+EndGlobal
