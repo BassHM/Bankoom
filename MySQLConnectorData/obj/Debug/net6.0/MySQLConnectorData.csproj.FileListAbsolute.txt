@@ -1,0 +1,11 @@
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\bin\Debug\net6.0\MySQLConnectorData.deps.json
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\bin\Debug\net6.0\MySQLConnectorData.dll
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\bin\Debug\net6.0\MySQLConnectorData.pdb
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\MySQLConnectorData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\MySQLConnectorData.AssemblyInfoInputs.cache
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\MySQLConnectorData.AssemblyInfo.cs
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\MySQLConnectorData.csproj.CoreCompileInputs.cache
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\MySQLConnectorData.dll
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\refint\MySQLConnectorData.dll
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\MySQLConnectorData.pdb
+C:\Users\sebas\repos\Bankoom\MySQLConnectorData\obj\Debug\net6.0\ref\MySQLConnectorData.dll
