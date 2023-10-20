@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`country` (
   `idCountry` TINYINT(3) NOT NULL AUTO_INCREMENT,
   `countryName` VARCHAR(45) NULL,
   PRIMARY KEY (`idCountry`),
-  UNIQUE INDEX `idCountry_UNIQUE` (`idCountry` ASC) VISIBLE)
+  UNIQUE INDEX `idCountry_UNIQUE` (`idCountry` ASC) )
 ENGINE = InnoDB;
 
 
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`state` (
   `stateName` VARCHAR(25) NULL,
   `idCountry` TINYINT(3) NOT NULL,
   PRIMARY KEY (`idState`),
-  UNIQUE INDEX `idState_UNIQUE` (`idState` ASC) VISIBLE,
-  INDEX `fk_state_country1_idx` (`idCountry` ASC) VISIBLE,
+  UNIQUE INDEX `idState_UNIQUE` (`idState` ASC),
+  INDEX `fk_state_country1_idx` (`idCountry` ASC),
   CONSTRAINT `fk_state_country1`
     FOREIGN KEY (`idCountry`)
     REFERENCES `Bankoom`.`country` (`idCountry`)
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`statusOfClient` (
   `statusName` VARCHAR(30) NULL,
   `statusDescripcion` VARCHAR(45) NULL,
   PRIMARY KEY (`idStatus`),
-  UNIQUE INDEX `idStatus_UNIQUE` (`idStatus` ASC) VISIBLE)
+  UNIQUE INDEX `idStatus_UNIQUE` (`idStatus` ASC))
 ENGINE = InnoDB;
 
 
@@ -83,10 +83,10 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`user` (
   `dateOfCreation` DATE NOT NULL,
   `status_idStatus` TINYINT NOT NULL,
   PRIMARY KEY (`idUser`),
-  UNIQUE INDEX `rfc_UNIQUE` (`rfc` ASC) VISIBLE,
-  UNIQUE INDEX `idUser_UNIQUE` (`idUser` ASC) VISIBLE,
-  INDEX `fk_user_state1_idx` (`idStateOfResidence` ASC) VISIBLE,
-  INDEX `fk_user_status1_idx` (`status_idStatus` ASC) VISIBLE,
+  UNIQUE INDEX `rfc_UNIQUE` (`rfc` ASC) ,
+  UNIQUE INDEX `idUser_UNIQUE` (`idUser` ASC) ,
+  INDEX `fk_user_state1_idx` (`idStateOfResidence` ASC) ,
+  INDEX `fk_user_status1_idx` (`status_idStatus` ASC) ,
   CONSTRAINT `fk_user_state1`
     FOREIGN KEY (`idStateOfResidence`)
     REFERENCES `Bankoom`.`state` (`idState`)
@@ -110,8 +110,8 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`credentials` (
   `password` VARCHAR(45) NOT NULL,
   `idUser` INT NOT NULL,
   PRIMARY KEY (`userName`, `idUser`),
-  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC) VISIBLE,
-  INDEX `fk_UserCredentials_user_idx` (`idUser` ASC) VISIBLE,
+  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC) ,
+  INDEX `fk_UserCredentials_user_idx` (`idUser` ASC) ,
   CONSTRAINT `fk_UserCredentials_user`
     FOREIGN KEY (`idUser`)
     REFERENCES `Bankoom`.`user` (`idUser`)
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`currency` (
   `idCurrency` TINYINT(3) NOT NULL AUTO_INCREMENT,
   `currencyName` VARCHAR(3) NULL,
   PRIMARY KEY (`idCurrency`),
-  UNIQUE INDEX `idCurrency_UNIQUE` (`idCurrency` ASC) VISIBLE)
+  UNIQUE INDEX `idCurrency_UNIQUE` (`idCurrency` ASC) )
 ENGINE = InnoDB;
 
 
@@ -143,8 +143,8 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`statusOfAccount` (
   `statusName` VARCHAR(45) NULL,
   `statusDescription` VARCHAR(45) NULL,
   PRIMARY KEY (`idStatusOfAccount`),
-  UNIQUE INDEX `idStatusOfAccount_UNIQUE` (`idStatusOfAccount` ASC) VISIBLE,
-  UNIQUE INDEX `statusName_UNIQUE` (`statusName` ASC) VISIBLE)
+  UNIQUE INDEX `idStatusOfAccount_UNIQUE` (`idStatusOfAccount` ASC) ,
+  UNIQUE INDEX `statusName_UNIQUE` (`statusName` ASC) )
 ENGINE = InnoDB;
 
 
@@ -165,9 +165,9 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`organization` (
   `status_idStatus` TINYINT NOT NULL,
   `phoneNumber` INT(10) NULL,
   PRIMARY KEY (`idOrganization`),
-  UNIQUE INDEX `idOrganization_UNIQUE` (`idOrganization` ASC) VISIBLE,
-  INDEX `fk_organization_state1_idx` (`state_idState` ASC) VISIBLE,
-  INDEX `fk_organization_status1_idx` (`status_idStatus` ASC) VISIBLE,
+  UNIQUE INDEX `idOrganization_UNIQUE` (`idOrganization` ASC) ,
+  INDEX `fk_organization_state1_idx` (`state_idState` ASC) ,
+  INDEX `fk_organization_status1_idx` (`status_idStatus` ASC) ,
   CONSTRAINT `fk_organization_state1`
     FOREIGN KEY (`state_idState`)
     REFERENCES `Bankoom`.`state` (`idState`)
@@ -194,8 +194,8 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`typeOfAccount` (
   `maximumAmmountInTransactions` DECIMAL(9,2) NULL,
   `idCurrency` TINYINT(3) NOT NULL,
   PRIMARY KEY (`idTypeOfAccount`),
-  INDEX `fk_typeOfAccount_currency1_idx` (`idCurrency` ASC) VISIBLE,
-  UNIQUE INDEX `idTypeOfAccount_UNIQUE` (`idTypeOfAccount` ASC) VISIBLE,
+  INDEX `fk_typeOfAccount_currency1_idx` (`idCurrency` ASC) ,
+  UNIQUE INDEX `idTypeOfAccount_UNIQUE` (`idTypeOfAccount` ASC),
   CONSTRAINT `fk_typeOfAccount_currency1`
     FOREIGN KEY (`idCurrency`)
     REFERENCES `Bankoom`.`currency` (`idCurrency`)
@@ -219,11 +219,11 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`account` (
   `balance` DECIMAL(9,2) NOT NULL,
   `idTypeOfAccount` TINYINT(3) NOT NULL,
   PRIMARY KEY (`idAccount`),
-  UNIQUE INDEX `idAccount_UNIQUE` (`idAccount` ASC) VISIBLE,
-  INDEX `fk_account_statusOfAccount1_idx` (`idStatusOfAccount` ASC) VISIBLE,
-  INDEX `fk_account_user1_idx` (`idUser` ASC) VISIBLE,
-  INDEX `fk_account_organization1_idx` (`idOrganization` ASC) VISIBLE,
-  INDEX `fk_account_typeOfAccount1_idx` (`idTypeOfAccount` ASC) VISIBLE,
+  UNIQUE INDEX `idAccount_UNIQUE` (`idAccount` ASC),
+  INDEX `fk_account_statusOfAccount1_idx` (`idStatusOfAccount` ASC),
+  INDEX `fk_account_user1_idx` (`idUser` ASC),
+  INDEX `fk_account_organization1_idx` (`idOrganization` ASC),
+  INDEX `fk_account_typeOfAccount1_idx` (`idTypeOfAccount` ASC),
   CONSTRAINT `fk_account_statusOfAccount1`
     FOREIGN KEY (`idStatusOfAccount`)
     REFERENCES `Bankoom`.`statusOfAccount` (`idStatusOfAccount`)
@@ -260,9 +260,9 @@ CREATE TABLE IF NOT EXISTS `Bankoom`.`transfer` (
   `ammount` DECIMAL(7,2) NOT NULL,
   `dateOfTransfer` DATETIME NOT NULL,
   PRIMARY KEY (`idTransfer`),
-  INDEX `fk_transaction_account1_idx` (`idAccountSender` ASC) VISIBLE,
-  INDEX `fk_transaction_account2_idx` (`idAccountReciever` ASC) VISIBLE,
-  UNIQUE INDEX `idTransfer_UNIQUE` (`idTransfer` ASC) VISIBLE,
+  INDEX `fk_transaction_account1_idx` (`idAccountSender` ASC) ,
+  INDEX `fk_transaction_account2_idx` (`idAccountReciever` ASC) ,
+  UNIQUE INDEX `idTransfer_UNIQUE` (`idTransfer` ASC) ,
   CONSTRAINT `fk_transaction_account1`
     FOREIGN KEY (`idAccountSender`)
     REFERENCES `Bankoom`.`account` (`idAccount`)
