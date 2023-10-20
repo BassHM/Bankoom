@@ -13,7 +13,7 @@ namespace ApiBankoomer.Controllers
         }
 
         [HttpGet]
-        [Route("GerUsers")]
+        [Route("GetUsers")]
         public async Task<IActionResult> GetUsers()
         {
             var sql = "SELECT * FROM user";
