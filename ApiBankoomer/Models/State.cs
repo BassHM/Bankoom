@@ -3,6 +3,7 @@
     public class PostState
     {
         public string stateName { get; set; }
+        public string idCountry { get; set; }
     }
     public class GetState
     {
