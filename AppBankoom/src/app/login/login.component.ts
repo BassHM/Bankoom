@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +8,14 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 })
 export class LoginComponent {
   loginForm =  new FormGroup({
-    'Identificador': new FormControl('', Validators.required),
-    'Contraseña': new FormControl('', Validators.required)
+    usuario: new FormControl('', Validators.required),
+    contrasenia: new FormControl('', Validators.required)
   });
   onSubmit() {
     throw new Error('Method not implemented.');
+  }
+  login() {
+    console.log(this.loginForm);
   }
 
 }
