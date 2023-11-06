@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+ZKBviRx2YOh245rCSjybVTCRD+Ud4FUNu4XuubC0YzMI4JgvLpVnD55TxtJitZ4LxCdA2sap41jqtx06S82Cg==",
+  "dgSpecHash": "tsgIUG2Q7r2/aiTgjp2i4wSEJw6Lp61Q/8KWuaVPFkqBCSY4zksfaKLPsBHGeD32nvgsZqJIPiQ0TFZSsd5+bA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebas\\repos\\Bankoom\\MySQLConnectorData\\MySQLConnectorData.csproj",
+  "projectFilePath": "C:\\Users\\zombi\\OneDrive - Universidad Autónoma de Aguascalientes\\QuintoSemestre\\BasedeDatos\\bankoom\\Bankoom\\MySQLConnectorData\\MySQLConnectorData.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
