@@ -53,7 +53,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `bankoomuser`.`country`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bankoomuser`.`country` (
-  `idCountry` INT NOT NULL,
+  `idCountry` INT NOT NULL auto_increment,
   `countryName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCountry`))
 ENGINE = InnoDB
@@ -64,7 +64,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `bankoomuser`.`state`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bankoomuser`.`state` (
-  `idState` INT NOT NULL,
+  `idState` INT NOT NULL auto_increment,
   `stateName` VARCHAR(45) NULL,
   `idCountry` INT NOT NULL,
   PRIMARY KEY (`idState`),
@@ -135,7 +135,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `bankoomuser`.`periodicpayment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bankoomuser`.`periodicpayment` (
-  `idPeriodicPayment` INT NOT NULL,
+  `idPeriodicPayment` INT NOT NULL auto_increment,
   `paymentDay` TINYINT NOT NULL,
   `ammount` DECIMAL(18,2) NOT NULL,
   `idOrganizationAccount` INT NOT NULL,
@@ -153,7 +153,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `bankoomuser`.`payment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bankoomuser`.`payment` (
-  `idPayment` INT NOT NULL,
+  `idPayment` INT NOT NULL auto_increment,
   `idOrganizationAccount` VARCHAR(45) NOT NULL,
   `idAccount` INT NOT NULL,
   `ammount` DECIMAL(18,2) NOT NULL,

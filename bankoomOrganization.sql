@@ -39,7 +39,7 @@ ENGINE = InnoDB;
 -- Table `bankoomOrganization`.`organizationAccount`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bankoomOrganization`.`organizationAccount` (
-  `idOrganizationAccount` INT NOT NULL,
+  `idOrganizationAccount` INT NOT NULL auto_increment,
   `idOrganization` VARCHAR(45) NOT NULL,
   `accountName` VARCHAR(45) NOT NULL,
   `balance` DECIMAL(18,2) NOT NULL DEFAULT 0,
