@@ -1,18 +1,19 @@
 <!-- Basic login with angular material -->
-<div class="login-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+<div class="d-flex justify-content-center align-items-center h-100 flex-column">
+  <mat-card class="p-3 mb-5">
+    <mat-card-header class="pb-4 justify-content-evenly">
+      <mat-card-title>Bankoom🍆💦</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form class="d-flex flex-column" [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-form-field>
-          <input matInput placeholder="Identificador">
+          <input matInput placeholder="Usuario" formControlName="usuario">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Contraseña" type="password">
+          <input matInput placeholder="Contraseña" type="password" formControlName="contrasenia">
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button mat-raised-button color="primary" type="submit">Ingresar</button>
+        <button mat-button class="mt-2" style="font-weight:300;">No estas registrado? Hazlo ahora!</button>
       </form>
     </mat-card-content>
   </mat-card>
