@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Conección a la base de datos, es un singleton para manejar una sola conección para toda la base de datos.
+//Conecciï¿½n a la base de datos, es un singleton para manejar una sola conecciï¿½n para toda la base de datos.
 builder.Services.AddSingleton(new MySQLConfig(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //Cors con politicas que permiten cualquier cosa, se puede cambiar para que solo permita ciertas conecciones.

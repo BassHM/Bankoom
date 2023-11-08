@@ -25,13 +25,7 @@ CREATE TABLE IF NOT EXISTS `bankoomOrganization`.`organization` (
   `password` VARCHAR(45) NOT NULL,
   `comercialName` VARCHAR(45) NOT NULL,
   `idState` INT NOT NULL,
-  PRIMARY KEY (`idOrganization`),
-  INDEX `fk_organization_state1_idx` (`idState` ASC) VISIBLE,
-  CONSTRAINT `fk_organization_state1`
-    FOREIGN KEY (`idState`)
-    REFERENCES `bankoomOrganization`.`state` (`idState`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idOrganization`))
 ENGINE = InnoDB;
 
 
@@ -44,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `bankoomOrganization`.`organizationAccount` (
   `accountName` VARCHAR(45) NOT NULL,
   `balance` DECIMAL(18,2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idOrganizationAccount`),
-  INDEX `fk_organizationAccount_organization1_idx` (`idOrganization` ASC) VISIBLE,
+  INDEX `fk_organizationAccount_organization1_idx` (`idOrganization` ASC),
   CONSTRAINT `fk_organizationAccount_organization1`
     FOREIGN KEY (`idOrganization`)
     REFERENCES `bankoomOrganization`.`organization` (`idOrganization`)

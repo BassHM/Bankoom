@@ -2,11 +2,11 @@
 {
     public class PostCountry
     {
-        public string countryName; 
+        public string countryName { get; set; } 
     }
     public class GetCountry
     {
-        public int idCountry;
-        public string countryName;
+        public int idCountry { get; set; }
+        public string countryName { get; set; }
     }
 }

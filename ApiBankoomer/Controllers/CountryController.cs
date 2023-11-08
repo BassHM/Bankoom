@@ -16,17 +16,6 @@ namespace ApiBankoomer.Controllers
             _connectionString = connectionString;
         }
 
-        [HttpPost]
-        [Route("PostCountry")]
-        public async Task<IActionResult> PostCountry([FromBody] PostCountry postCountry)
-        {
-            var sql = "INSERT INTO country (countryName) VALUES (@name)";
-            using var connection = new MySqlConnection(_connectionString.ConnectionString);
-            var result = await connection.ExecuteAsync(sql, new { name = postCountry.countryName });
-            //Si las filas afectadas es mayor a 0 entonces ok, si no pues un bad request
-            return result > 0 ? Ok() : BadRequest();
-        }
-
         [HttpGet]
         [Route("GetCountry/{idCountry}")]
         public async Task<IActionResult> GetCountry(int idCountry)
@@ -59,6 +48,16 @@ namespace ApiBankoomer.Controllers
             var sql = "DELETE FROM country WHERE idCountry = @idCountry";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             var result = await connection.ExecuteAsync(sql, new { idCountry });
+            //Si las filas afectadas es mayor a 0 entonces ok, si no pues un bad request
+            return result > 0 ? Ok() : BadRequest();
+        }
+        [HttpPost]
+        [Route("PostCountry")]
+        public async Task<IActionResult> PostCountry([FromBody] Models.PostCountry postCountry)
+        {
+            var sql = "INSERT INTO country (countryName) VALUES (@countryName)";
+            using var connection = new MySqlConnection(_connectionString.ConnectionString);
+            var result = await connection.ExecuteAsync(sql, postCountry);
             //Si las filas afectadas es mayor a 0 entonces ok, si no pues un bad request
             return result > 0 ? Ok() : BadRequest();
         }
