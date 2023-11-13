@@ -37,6 +37,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors("AllowAll"); //Added this line to enable CORS
+
 app.MapControllers();
 
 app.Run();

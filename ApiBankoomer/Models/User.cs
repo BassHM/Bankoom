@@ -12,9 +12,10 @@
         public string name { get; set; } // Assuming varchar(45)
         public string lastName { get; set; } // Assuming varchar(45)
         public string secondLastName { get; set; } // Assuming varchar(45)
-        public DateOnly dateOfBirth { get; set; } // Assuming date
+        public string dateOfBirth { get; set; } // Assuming date
+        public char genero { get; set; } // Assuming char
         public string curp { get; set; } // Assuming varchar(18)
-        public int phoneNumber { get; set; } // Assuming int
+        public string phoneNumber { get; set; } // Assuming int
         public string address { get; set; } // Assuming varchar(90)
         public int postalCode { get; set; } // Assuming mediumint
         public string email { get; set; } // Assuming varchar(30)

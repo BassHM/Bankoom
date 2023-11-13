@@ -6,6 +6,8 @@ using System.Data;
 
 namespace ApiBankoomer.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : ControllerBase
     {
         private MySQLConnectorData.MySQLConfig _connectionString;
@@ -20,14 +22,14 @@ namespace ApiBankoomer.Controllers
         {
             var sql = "SELECT idUser FROM user where idUser = @idUser and password = @password";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
-            var users = await connection.QueryAsync<int>(sql, new { model.idUser, model.password });
+            var users = await connection.QueryAsync<string>(sql, new { model.idUser, model.password });
             return users.Any() ? Ok() : NotFound();
         }
         [HttpPost]
         [Route("SignInUser")]
         public async Task<IActionResult> SignInUser([FromBody] Models.SignInUser model)
         {
-            var sql = "INSERT INTO user(idUser,password, name,lastName,secondLastName,dateOfBirth,curp,phoneNumber,adress,postalCode,email,idState) values(@idUser, @password, @name, @lastName, @secondLastName, @dateOfBirth, @curp, @phoneNumber, @address, @postalCode, @email, @idState)";
+            var sql = "INSERT INTO user(idUser,password, name,lastName,secondLastName,dateOfBirth,genero,curp,phoneNumber,adress,postalCode,email,idState) values(@idUser, @password, @name, @lastName, @secondLastName, STR_TO_DATE(@dateOfBirth, '%d/%m/%Y'),@genero,@curp, @phoneNumber, @address, @postalCode, @email, @idState)";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             int affectedRows = await connection.ExecuteAsync(sql, model);
             return affectedRows == 1 ? Ok() : NotFound();

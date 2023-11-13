@@ -1,21 +1,29 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForm =  new FormGroup({
-    usuario: new FormControl('', Validators.required),
-    contrasenia: new FormControl('', Validators.required)
-  });
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
-  login() {
-    console.log(this.loginForm);
-  }
 
+export class LoginComponent {
+  constructor(private loginService: LoginService, private router: Router) { }
+  loginForm = new FormGroup({
+    idUser: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
+
+  login(): void {
+    this.loginService.userLogin(this.loginForm.value).subscribe((data) => {
+      // Redirigir al usuario al dashboard
+      this.router.navigate(['/dashboard']);
+
+    }, (error) => { 
+      console.log(error); 
+      this.loginForm.valid!=false;
+    });
+  }
+  
 }

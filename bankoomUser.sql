@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`currency` (
   `idCurrencyIso4217` VARCHAR(3) NOT NULL,
   `currencyName` VARCHAR(3) NOT NULL,
   PRIMARY KEY (`idCurrencyIso4217`),
-  UNIQUE INDEX `idCurrency_UNIQUE` (`idCurrencyIso4217` ASC) VISIBLE)
+  UNIQUE INDEX `idCurrency_UNIQUE` (`idCurrencyIso4217` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`account` (
   `idTypeOfAccount` TINYINT NOT NULL,
   PRIMARY KEY (`idAccount`),
   UNIQUE INDEX `idAccount_UNIQUE` (`idAccount` ASC),
-  INDEX `fk_account_user1_idx` (`idUser` ASC) VISIBLE,
+  INDEX `fk_account_user1_idx` (`idUser` ASC),
   INDEX `fk_account_typeOfAccount1_idx` (`idTypeOfAccount` ASC),
   CONSTRAINT `fk_account_typeOfAccount1`
     FOREIGN KEY (`idTypeOfAccount`)

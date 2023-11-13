@@ -1,1 +1,110 @@
-<p>sign-in-user works!</p>
+<!-- Basic login with angular material -->
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <mat-card class="m-3">
+        <mat-card-header class="pb-2">
+            <mat-card-title>Registrate y forma parte de Koom!💦</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <!-- Atras desde el paso 1 -->
+            <div class="w-100 d-flex font-weight-bold justify-content-between h-100 pb-3">
+                <button mat-icon-button color="accent" (click)="step=step-1; selectedCountry=undefined;" 
+                    *ngIf="step==1 || step==2 || step==3"><mat-icon >arrow_back</mat-icon>
+                </button>
+                <mat-label class="w-100 d-flex justify-content-end">Paso {{step+1}}</mat-label>
+
+            </div>
+            <!-- Paso 0: Escoger el pais -->
+            <div *ngIf="step==0">
+                <mat-radio-group class="d-flex flex-wrap align-items-center justify-content-center">
+                    <mat-radio-button *ngFor="let country of countries" [value]="country.idCountry"
+                        (change)="setCountry(country)" class="w-100">
+                        {{country.countryName}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="step==1">
+                <form class="d-flex flex-wrap align-items-center" [formGroup]="signInUserForm">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Nombre" formControlName="name" pattern="[a-zA-Z]*">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Apellido Paterno" formControlName="lastName">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Apellido Materno" formControlName="secondLastName">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Fecha de Nacimiento</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [min]="minDate" type="text"
+                            [max]="maxDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="idState">
+                            <mat-option *ngFor="let state of states" [value]="state.idState">
+                                {{state.stateName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-radio-group aria-label="Genero" formControlName="genero" (change)="GenerarCurp()"
+                        class="pb-3 w-100">
+                        <mat-radio-button value="H">Masculino</mat-radio-button>
+                        <mat-radio-button value="M">Femenino</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Curp" formControlName="curp">
+                    </mat-form-field>
+                </form>
+
+            </div>
+            <div *ngIf="step==2">
+                <!-- paso 2 con la dirección (address, postalCode) junto con el email y número telefónico (phoneNumber) -->
+                <form class="d-flex flex-wrap align-items-center" [formGroup]="signInUserForm">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Correo" formControlName="email" type="email">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Teléfono" formControlName="phoneNumber" pattern="[0-9]{10}">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Dirección" formControlName="address">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Código Postal" formControlName="postalCode" type="number" pattern="[0-9]{5}">
+                    </mat-form-field>
+                </form>
+            </div>
+            <div *ngIf="step==3">
+                <form class="d-flex flex-wrap align-items-center" [formGroup]="signInUserForm">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="ID Usuario" formControlName="idUser">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Contraseña" formControlName="password" type="password">
+                    </mat-form-field>
+                    <!-- confirmar contraseña -->
+                    
+                </form>
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Confirmar Contraseña" [(ngModel)]="temporalPassword" (ngModelChange)="confirmarContrasenia()" type="password">
+                </mat-form-field>
+                <button mat-raised-button *ngIf="confirmPassword" color="primary" (click)="registrarUsuario()" class="w-100">Registrarme</button>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <div class="d-flex justify-content-evenly py-3">
+                <!-- Siguiente desde el paso 0 -->
+                <button mat-raised-button color="primary" (click)="step=1; getStates()"
+                    *ngIf="step==0 && selectedCountry">Siguiente</button>
+                <!-- Siguiente desde el paso 1 -->
+                <button mat-raised-button color="primary" (click)="step=2" *ngIf="step==1 && validarPaso1()">Mi CURP es
+                    correcta!</button>
+                <!-- Siguiente desde el paso 2 -->
+                <button mat-raised-button color="primary" (click)="step=3" *ngIf="step==2 && validarPaso2()">Siguiente</button>
+
+            </div>
+        </mat-card-footer>
+    </mat-card>
+</div>

@@ -22,7 +22,7 @@ namespace ApiBankoomer.Controllers
         {
             var sql = "SELECT * FROM country where idCountry = @idCountry";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
-            var state = await connection.QueryFirstOrDefaultAsync<GetState>(sql, new { idCountry });
+            var state = await connection.QueryFirstOrDefaultAsync<GetCountry>(sql, new { idCountry });
             //Si no hay respuesta entonces regresar un 404
             if (state == null)
                 return NotFound();
@@ -30,12 +30,12 @@ namespace ApiBankoomer.Controllers
         }
 
         [HttpGet]
-        [Route("GetCountrys")]
-        public async Task<IActionResult> GetCountrys()
+        [Route("GetCountries")]
+        public async Task<IActionResult> GetCountries()
         {
             var sql = "SELECT * FROM country";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
-            var state = await connection.QueryAsync<GetState>(sql);
+            var state = await connection.QueryAsync<GetCountry>(sql);
             //Si no hay respuesta entonces regresar un 404 (not found)
             if (state == null)
                 return NotFound();

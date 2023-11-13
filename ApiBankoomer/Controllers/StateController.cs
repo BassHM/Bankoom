@@ -38,6 +38,18 @@ namespace ApiBankoomer.Controllers
                 return NotFound();
             return Ok(state);
         }
+        [HttpGet]
+        [Route("GetStates/{idCountry}")]
+        public async Task<IActionResult> GetStates(int idCountry)
+        {
+            var sql = "SELECT * FROM state where idCountry = @idCountry";
+            using var connection = new MySqlConnection(_connectionString.ConnectionString);
+            var state = await connection.QueryAsync<GetStates>(sql,new { idCountry });
+            //If there is no body in the response, return 404
+            if (state == null)
+                return NotFound();
+            return Ok(state);
+        }
 
         [HttpDelete]
         [Route("DeleteState/{idState}")]
