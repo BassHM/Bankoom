@@ -82,7 +82,7 @@
                         <input matInput placeholder="ID Usuario" formControlName="idUser">
                     </mat-form-field>
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Contraseña" formControlName="password" type="password">
+                        <input matInput placeholder="Contraseña" formControlName="password" type="password" (change)="confirmarContrasenia()">
                     </mat-form-field>
                     <!-- confirmar contraseña -->
                     
@@ -103,7 +103,7 @@
                     correcta!</button>
                 <!-- Siguiente desde el paso 2 -->
                 <button mat-raised-button color="primary" (click)="step=3" *ngIf="step==2 && validarPaso2()">Siguiente</button>
-
+                <mat-label *ngIf="step==3 && !confirmPassword && temporalPassword!=''" style="color:red;">Las contraseñas no coinciden</mat-label>
             </div>
         </mat-card-footer>
     </mat-card>
