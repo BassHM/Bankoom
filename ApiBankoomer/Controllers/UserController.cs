@@ -29,10 +29,10 @@ namespace ApiBankoomer.Controllers
         [Route("SignInUser")]
         public async Task<IActionResult> SignInUser([FromBody] Models.SignInUser model)
         {
-            var sql = "INSERT INTO user(idUser,password, name,lastName,secondLastName,dateOfBirth,genero,curp,phoneNumber,adress,postalCode,email,idState) values(@idUser, @password, @name, @lastName, @secondLastName, STR_TO_DATE(@dateOfBirth, '%d/%m/%Y'),@genero,@curp, @phoneNumber, @address, @postalCode, @email, @idState)";
+            var sql = "call signInUser(@idUser, @password, @name, @lastName, @secondLastName, @dateOfBirth,@genero,@curp, @phoneNumber, @address, @postalCode, @email, @idState)";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             int affectedRows = await connection.ExecuteAsync(sql, model);
-            return affectedRows == 1 ? Ok() : NotFound();
+            return affectedRows!=2 ? Ok() : NotFound();
         }
     }
 }
