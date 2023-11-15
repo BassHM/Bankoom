@@ -7,14 +7,14 @@
     <mat-card-content>
       <form class="d-flex flex-column" [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-form-field>
-          <input matInput placeholder="Usuario" formControlName="usuario">
+          <input matInput placeholder="Usuario" formControlName="idUser">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Contraseña" type="password" formControlName="contrasenia">
+          <input matInput placeholder="Contraseña" type="password" formControlName="password">
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Ingresar</button>
-        <button mat-button class="mt-2" style="font-weight:300;">No estas registrado? Hazlo ahora!</button>
       </form>
+      <a mat-button class="mt-2" style="font-weight:300;" routerLink="/sign-in-user" >No estas registrado? Hazlo ahora!</a>
     </mat-card-content>
   </mat-card>
 </div>

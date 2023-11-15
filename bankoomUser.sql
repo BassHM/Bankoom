@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`currency` (
   `idCurrencyIso4217` VARCHAR(3) NOT NULL,
   `currencyName` VARCHAR(3) NOT NULL,
   PRIMARY KEY (`idCurrencyIso4217`),
-  UNIQUE INDEX `idCurrency_UNIQUE` (`idCurrencyIso4217` ASC) VISIBLE)
+  UNIQUE INDEX `idCurrency_UNIQUE` (`idCurrencyIso4217` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`typeofaccount` (
   `maximumAmmountInTransactions` DECIMAL(9,2) NOT NULL,
   `idCurrencyIso4217` VARCHAR(3) NOT NULL,
   PRIMARY KEY (`idTypeOfAccount`),
-  UNIQUE INDEX `idTypeOfAccount_UNIQUE` (`idTypeOfAccount` ASC) VISIBLE,
-  INDEX `fk_typeOfAccount_currency1_idx` (`idCurrencyIso4217` ASC) VISIBLE,
+  UNIQUE INDEX `idTypeOfAccount_UNIQUE` (`idTypeOfAccount` ASC),
+  INDEX `fk_typeOfAccount_currency1_idx` (`idCurrencyIso4217` ASC),
   CONSTRAINT `fk_typeOfAccount_currency1`
     FOREIGN KEY (`idCurrencyIso4217`)
     REFERENCES `bankoomuser`.`currency` (`idCurrencyIso4217`))
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`state` (
   `stateName` VARCHAR(45) NULL,
   `idCountry` INT NOT NULL,
   PRIMARY KEY (`idState`),
-  INDEX `fk_state_country1_idx` (`idCountry` ASC) VISIBLE,
+  INDEX `fk_state_country1_idx` (`idCountry` ASC),
   CONSTRAINT `fk_state_country1`
     FOREIGN KEY (`idCountry`)
     REFERENCES `bankoomuser`.`country` (`idCountry`)
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`user` (
   `email` VARCHAR(30) NOT NULL,
   `idState` INT NOT NULL,
   PRIMARY KEY (`idUser`),
-  UNIQUE INDEX `idUser_UNIQUE` (`idUser` ASC) VISIBLE,
-  UNIQUE INDEX `rfc_UNIQUE` (`rfc` ASC) VISIBLE,
-  INDEX `fk_user_state1_idx` (`idState` ASC) VISIBLE,
+  UNIQUE INDEX `idUser_UNIQUE` (`idUser` ASC),
+  UNIQUE INDEX `rfc_UNIQUE` (`rfc` ASC),
+  INDEX `fk_user_state1_idx` (`idState` ASC),
   CONSTRAINT `fk_user_state1`
     FOREIGN KEY (`idState`)
     REFERENCES `bankoomuser`.`state` (`idState`)
@@ -118,9 +118,9 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`account` (
   `balance` DECIMAL(9,2) NOT NULL DEFAULT '0.00',
   `idTypeOfAccount` TINYINT NOT NULL,
   PRIMARY KEY (`idAccount`),
-  UNIQUE INDEX `idAccount_UNIQUE` (`idAccount` ASC) VISIBLE,
-  INDEX `fk_account_user1_idx` (`idUser` ASC) VISIBLE,
-  INDEX `fk_account_typeOfAccount1_idx` (`idTypeOfAccount` ASC) VISIBLE,
+  UNIQUE INDEX `idAccount_UNIQUE` (`idAccount` ASC),
+  INDEX `fk_account_user1_idx` (`idUser` ASC),
+  INDEX `fk_account_typeOfAccount1_idx` (`idTypeOfAccount` ASC),
   CONSTRAINT `fk_account_typeOfAccount1`
     FOREIGN KEY (`idTypeOfAccount`)
     REFERENCES `bankoomuser`.`typeofaccount` (`idTypeOfAccount`),
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`periodicpayment` (
   `idOrganizationAccount` INT NOT NULL,
   `idUser` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`idPeriodicPayment`),
-  INDEX `fk_periodicPayment_user1_idx` (`idUser` ASC) VISIBLE,
+  INDEX `fk_periodicPayment_user1_idx` (`idUser` ASC),
   CONSTRAINT `fk_periodicPayment_user1`
     FOREIGN KEY (`idUser`)
     REFERENCES `bankoomuser`.`user` (`idUser`))
@@ -159,8 +159,8 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`payment` (
   `ammount` DECIMAL(18,2) NOT NULL,
   `idPeriodicPayment` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idPayment`),
-  INDEX `fk_payment_account1_idx` (`idAccount` ASC) VISIBLE,
-  INDEX `fk_payment_periodicPayment1_idx` (`idPeriodicPayment` ASC) VISIBLE,
+  INDEX `fk_payment_account1_idx` (`idAccount` ASC),
+  INDEX `fk_payment_periodicPayment1_idx` (`idPeriodicPayment` ASC),
   CONSTRAINT `fk_payment_account1`
     FOREIGN KEY (`idAccount`)
     REFERENCES `bankoomuser`.`account` (`idAccount`),
@@ -182,9 +182,9 @@ CREATE TABLE IF NOT EXISTS `bankoomuser`.`transfer` (
   `ammount` DECIMAL(7,2) NOT NULL,
   `dateOfTransfer` DATETIME NOT NULL,
   PRIMARY KEY (`idTransfer`),
-  UNIQUE INDEX `idTransfer_UNIQUE` (`idTransfer` ASC) VISIBLE,
-  INDEX `fk_transaction_account1_idx` (`idAccountSender` ASC) VISIBLE,
-  INDEX `fk_transaction_account2_idx` (`idAccountReciever` ASC) VISIBLE,
+  UNIQUE INDEX `idTransfer_UNIQUE` (`idTransfer` ASC),
+  INDEX `fk_transaction_account1_idx` (`idAccountSender` ASC),
+  INDEX `fk_transaction_account2_idx` (`idAccountReciever` ASC),
   CONSTRAINT `fk_transaction_account1`
     FOREIGN KEY (`idAccountSender`)
     REFERENCES `bankoomuser`.`account` (`idAccount`),

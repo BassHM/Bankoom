@@ -1,23 +1,37 @@
 ﻿namespace ApiBankoomer.Models
 {
-    public class User
+    public class UserLogin
     {
-        public int idUser { get; set; }
-        public string name { get; set; }
-        public string lastName { get; set; }
-        public string secondLastName { get; set; }
-        public int idStateOfBirth { get; set; }
-        public int idCountryOfBirth { get; set; }
-        public int idGender { get; set; }
-        public int idProfession { get; set; }
-        public DateTime dateOfBirth { get; set; }
-        public string curp { get; set; }
-        public string? rfc { get; set; }
-        public string phoneNumber { get; set; }
-        public string address { get; set; }
-        public string postalCode { get; set; }
-        public string email { get; set; }
-        public DateTime dateOfCreation { get; set; }
-        public int statusId { get; set; }
+        public string idUser { get; set; }
+        public string password { get; set; }
+    }
+    public class SignInUser
+    {
+        public string idUser { get; set; } // Assuming varchar(15)
+        public string password { get; set; } // Assuming varchar(45)
+        public string name { get; set; } // Assuming varchar(45)
+        public string lastName { get; set; } // Assuming varchar(45)
+        public string secondLastName { get; set; } // Assuming varchar(45)
+        public string dateOfBirth { get; set; } // Assuming date
+        public char genero { get; set; } // Assuming char
+        public string curp { get; set; } // Assuming varchar(18)
+        public string phoneNumber { get; set; } // Assuming int
+        public string address { get; set; } // Assuming varchar(90)
+        public int postalCode { get; set; } // Assuming mediumint
+        public string email { get; set; } // Assuming varchar(30)
+        public int idState { get; set; } // Foreign Key
+    }
+    public class getUser
+    {
+        string name { get; set; }
+        string lastName { get; set; }
+        string secondLastName { get; set; }
+        string countryOfResidence { get; set; }
+        string stateOfResidence { get; set; }
+        string curp { get; set; }
+        int phoneNumber { get; set; }
+        string adress { get; set; }
+        int postalCode { get; set; }
+        string email { get; set; }
     }
 }

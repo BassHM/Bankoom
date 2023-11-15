@@ -1,8 +1,8 @@
-﻿namespace ApiBankoomer.Models
+namespace ApiBankoomer.Models
 {
     public class PostCountry
     {
-        public string countryName { get; set; }
+        public string countryName { get; set; } 
     }
     public class GetCountry
     {
