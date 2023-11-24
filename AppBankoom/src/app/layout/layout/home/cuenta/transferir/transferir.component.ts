@@ -26,10 +26,12 @@ export class TransferirComponent {
     concepto: new FormControl('', Validators.required),
   });
   transferir() {
-    const data = {
-      cuentaOrigen: this.detalleCuenta.cuenta,
-      ...this.transferirForm.value
-    };
-    console.log(data);
+    if(this.transferirForm.valid) {
+      if(true){
+
+      }else{
+        
+      }
+    }
   }
 }
