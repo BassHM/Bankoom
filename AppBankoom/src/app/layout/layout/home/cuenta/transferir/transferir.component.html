@@ -1,0 +1,58 @@
+<mat-card>
+    <div class="bg-primario d-flex flex-column justify-content-center color-blanco">
+        <mat-card-header class="d-flex justify-content-center">
+            <mat-card-title>
+                <h1>Transferir</h1>
+
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <h3 class="m-0">Cuenta de origen:</h3>
+            <div class="d-flex justify-content-between">
+                <h2>{{ detalleCuenta.nombre }}</h2>
+                <h3>${{detalleCuenta.saldo}} {{detalleCuenta.monedaIsoCode}}</h3>
+            </div>
+        </mat-card-content>
+    </div>
+</mat-card>
+<mat-card class="m-3">
+    <mat-card-header>
+        <mat-card-title>
+            <h2 class="color-primario">Cuenta del destinatario:</h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="transferirForm" (ngSubmit)="transferir()">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Número de cuenta</mat-label>
+                <input matInput type="text" formControlName="cuentaDestino" type="number" required>
+            </mat-form-field>
+            <div *ngIf="this.transferirForm.get('cuentaDestino')?.valid" [@fadeInOut]>
+                <hr/>
+                <h2 class="color-primario">Monto:</h2>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>$ {{detalleCuenta.monedaIsoCode}}</mat-label>
+                    <input matInput type="number" formControlName="monto" type="number" required>
+                </mat-form-field>
+            </div>
+            <div *ngIf="this.transferirForm.get('cuentaDestino')?.valid && this.transferirForm.get('monto')?.valid"
+                [@fadeInOut]>
+                <hr/>
+                <h2 class="color-primario">Concepto:</h2>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input matInput type="text" formControlName="concepto" required>
+                </mat-form-field>
+            </div>
+            <div  *ngIf="this.transferirForm.valid" [@fadeInOut]>
+                <hr/>
+                <div class="d-flex justify-content-center flex-column align-items-center">
+
+                    <button mat-fab type="submit" class="mb-1">
+                    <mat-icon>sync_alt</mat-icon>
+                </button>
+                <h2 class="color-primario m-0">Transferir</h2>
+               </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

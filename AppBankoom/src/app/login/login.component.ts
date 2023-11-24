@@ -18,7 +18,7 @@ export class LoginComponent {
   login(): void {
     this.loginService.userLogin(this.loginForm.value).subscribe((data) => {
       // Redirigir al usuario al dashboard
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/welcome']);
 
     }, (error) => { 
       console.log(error); 

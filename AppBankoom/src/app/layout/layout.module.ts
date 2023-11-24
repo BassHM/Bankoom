@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+
+import { LayoutRoutingModule } from './layout-routing.module';
+import { LayoutComponent } from './layout/layout.component';
+import { HomeComponent } from './layout/home/home.component';
+import { NotificationsComponent } from './layout/notifications/notifications.component';
+import { PlusComponent } from './layout/plus/plus.component';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule }   from '@angular/forms';
@@ -11,29 +14,32 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { CuentaComponent } from './layout/home/cuenta/cuenta.component';
+import { IncomeExpenseComponent } from './layout/home/income-expense/income-expense.component';
+import { TransferirComponent } from './layout/home/cuenta/transferir/transferir.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    SignInUserComponent,
+    LayoutComponent,
+    HomeComponent,
+    NotificationsComponent,
+    PlusComponent,
+    CuentaComponent,
+    TransferirComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    IncomeExpenseComponent,
+    LayoutRoutingModule,
     FormsModule,
-    RouterModule,
     //Para hacer peticiones
     HttpClientModule,
-    //Materials
+    //Mas materials
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -48,6 +54,5 @@ import { RouterModule } from '@angular/router';
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 ],
-  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class LayoutModule { }

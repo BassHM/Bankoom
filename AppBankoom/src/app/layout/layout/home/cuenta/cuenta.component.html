@@ -1,0 +1,48 @@
+<div class="bg-primario d-flex flex-row justify-content-center pt-3 color-blanco">
+    <h1>{{detallesCuenta.tipoCuenta}}</h1>
+</div>
+<mat-card class="m-3">
+    <mat-card-content>
+        <mat-card-title class="d-flex flex-column align-items-center">
+            <h2 class="m-0">{{ detallesCuenta.nombreCuenta }}</h2>
+            <h3 class="m-0">{{ detallesCuenta.numeroCuenta }}</h3>
+            <h3>Cuenta en {{ detallesCuenta.nombreMoneda }}</h3>
+            <h1>${{ detallesCuenta.balance }}</h1>
+        </mat-card-title>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <div class="bg-primario d-flex flex-row justify-content-evenly pb-2">
+        <div class="d-flex flex-column align-items-center">
+            <button mat-icon-button style="color:white;" class="p-0 m-0" (click)="navegarTransferir()">
+                <mat-icon>sync_alt</mat-icon>
+            </button>
+            <mat-label style="color:white;">Transferir</mat-label>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <button mat-icon-button style="color:white;">
+                <mat-icon>summarize</mat-icon>
+            </button>
+            <mat-label style="color:white;">Estado de Cuenta</mat-label>
+        </div>
+    </div>
+ </mat-card>
+ <mat-card class="m-3">
+    <mat-card-header>
+        <mat-card-title class="d-flex flex-column">
+            <h2>Últimos Movimientos</h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <hr />
+        <div *ngFor="let movimiento of ultimosMovimientos; last as isLast" class="d-flex flex-column">
+            <div class="d-flex flex-row justify-content-between">
+                <mat-label><h2 class="color-primario m-0">{{movimiento.concepto}}</h2></mat-label>
+                <mat-label><h3 class="m-0">${{movimiento.monto}} {{detallesCuenta.isoMoneda}}</h3></mat-label>
+            </div>
+            <h4 class="m-0">{{movimiento.fechaMovimiento}}</h4>
+            <hr *ngIf="!isLast" />
+        </div>
+    </mat-card-content>
+ </mat-card>
+ 
