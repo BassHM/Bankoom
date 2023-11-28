@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -25,36 +23,25 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `idUser` int NOT NULL,
+  `idUser` varchar(15) NOT NULL,
+  `password` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `secondLastName` varchar(45) NOT NULL,
-  `idStateOfBirth` tinyint NOT NULL,
-  `idCountryOfBirth` tinyint NOT NULL,
-  `idGender` tinyint NOT NULL,
-  `idProfession` tinyint NOT NULL,
   `dateOfBirth` date NOT NULL,
   `curp` varchar(18) NOT NULL,
   `rfc` varchar(45) DEFAULT NULL,
-  `phoneNumber` int NOT NULL,
+  `phoneNumber` varchar(10) NOT NULL,
   `adress` varchar(90) NOT NULL,
   `postalCode` mediumint NOT NULL,
   `email` varchar(30) NOT NULL,
-  `dateOfCreation` date NOT NULL,
-  `status_idStatus` tinyint NOT NULL,
+  `idState` int NOT NULL,
+  `genero` char(1) NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `idUser_UNIQUE` (`idUser`),
   UNIQUE KEY `rfc_UNIQUE` (`rfc`),
-  KEY `fk_user_state1_idx` (`idStateOfBirth`),
-  KEY `fk_user_country1_idx` (`idCountryOfBirth`),
-  KEY `fk_user_gender1_idx` (`idGender`),
-  KEY `fk_user_profession1_idx` (`idProfession`),
-  KEY `fk_user_status1_idx` (`status_idStatus`),
-  CONSTRAINT `fk_user_country1` FOREIGN KEY (`idCountryOfBirth`) REFERENCES `country` (`idCountry`),
-  CONSTRAINT `fk_user_gender1` FOREIGN KEY (`idGender`) REFERENCES `gender` (`idGender`),
-  CONSTRAINT `fk_user_profession1` FOREIGN KEY (`idProfession`) REFERENCES `profession` (`idProfession`),
-  CONSTRAINT `fk_user_state1` FOREIGN KEY (`idStateOfBirth`) REFERENCES `state` (`idState`),
-  CONSTRAINT `fk_user_status1` FOREIGN KEY (`status_idStatus`) REFERENCES `statusofclient` (`idStatus`)
+  KEY `fk_user_state1_idx` (`idState`),
+  CONSTRAINT `fk_user_state1` FOREIGN KEY (`idState`) REFERENCES `state` (`idState`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -64,6 +51,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('Bass1904','bass','Sebastian','Herrera','Murillo','2003-04-19','HEMS030419HASRRBA0',NULL,'4494640841','Av Providencia',20286,'sebashm21@gmail.com',1,'H'),('Rixon22','richie','Rogelio','Seañez','Ochoa','2003-02-21','SEOR030221HASXCGA4',NULL,'4494494494','Moluk',20288,'rogelioYahir@gmail.com',1,'H'),('ZombieNerfBoy','esnerfonada','Jose Carlos','Macias','Macias','2003-05-13','MAMC030513HASCCRA9',NULL,'4496969696','Melquiades Moreno ',20220,'zombieBoy@gmail.com',1,'H');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -76,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:37:21
+-- Dump completed on 2023-11-27 21:48:59

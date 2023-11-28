@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -18,12 +16,34 @@ USE `bankoom`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping events for database 'bankoom'
+-- Table structure for table `payment`
 --
 
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `payment` (
+  `idPayment` int NOT NULL AUTO_INCREMENT,
+  `idOrganizationAccount` varchar(45) NOT NULL,
+  `idAccount` int NOT NULL,
+  `ammount` decimal(18,2) NOT NULL,
+  `idPeriodicPayment` int DEFAULT NULL,
+  PRIMARY KEY (`idPayment`),
+  KEY `fk_payment_account1_idx` (`idAccount`),
+  KEY `fk_payment_periodicPayment1_idx` (`idPeriodicPayment`),
+  CONSTRAINT `fk_payment_account1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`),
+  CONSTRAINT `fk_payment_periodicPayment1` FOREIGN KEY (`idPeriodicPayment`) REFERENCES `periodicpayment` (`idPeriodicPayment`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
--- Dumping routines for database 'bankoom'
+-- Dumping data for table `payment`
 --
+
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -34,4 +54,4 @@ USE `bankoom`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:39:40
+-- Dump completed on 2023-11-27 21:49:00

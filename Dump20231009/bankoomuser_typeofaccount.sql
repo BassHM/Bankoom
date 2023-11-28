@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -18,30 +16,34 @@ USE `bankoom`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `credentials`
+-- Table structure for table `typeofaccount`
 --
 
-DROP TABLE IF EXISTS `credentials`;
+DROP TABLE IF EXISTS `typeofaccount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `credentials` (
-  `userName` varchar(10) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `idUser` int NOT NULL,
-  PRIMARY KEY (`userName`,`idUser`),
-  UNIQUE KEY `userName_UNIQUE` (`userName`),
-  KEY `fk_UserCredentials_user_idx` (`idUser`),
-  CONSTRAINT `fk_UserCredentials_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `typeofaccount` (
+  `idTypeOfAccount` tinyint NOT NULL AUTO_INCREMENT,
+  `typeOfAccountDescription` varchar(45) NOT NULL,
+  `minimumAmmount` decimal(9,2) NOT NULL,
+  `maximumAmmount` decimal(9,2) NOT NULL,
+  `maximumAmmountInTransactions` decimal(9,2) NOT NULL,
+  `idCurrencyIso4217` varchar(3) NOT NULL,
+  PRIMARY KEY (`idTypeOfAccount`),
+  UNIQUE KEY `idTypeOfAccount_UNIQUE` (`idTypeOfAccount`),
+  KEY `fk_typeOfAccount_currency1_idx` (`idCurrencyIso4217`),
+  CONSTRAINT `fk_typeOfAccount_currency1` FOREIGN KEY (`idCurrencyIso4217`) REFERENCES `currency` (`idCurrencyIso4217`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `credentials`
+-- Dumping data for table `typeofaccount`
 --
 
-LOCK TABLES `credentials` WRITE;
-/*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-/*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
+LOCK TABLES `typeofaccount` WRITE;
+/*!40000 ALTER TABLE `typeofaccount` DISABLE KEYS */;
+INSERT INTO `typeofaccount` VALUES (1,'Cuenta corriente',0.00,150000.00,300000.00,'MXN'),(2,'Cuenta en dólares',0.00,20000.00,3000.00,'USD');
+/*!40000 ALTER TABLE `typeofaccount` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:39:39
+-- Dump completed on 2023-11-27 21:48:59

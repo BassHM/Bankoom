@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -18,30 +16,33 @@ USE `bankoom`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `credentials`
+-- Table structure for table `periodicpayment`
 --
 
-DROP TABLE IF EXISTS `credentials`;
+DROP TABLE IF EXISTS `periodicpayment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `credentials` (
-  `userName` varchar(10) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `idUser` int NOT NULL,
-  PRIMARY KEY (`userName`,`idUser`),
-  UNIQUE KEY `userName_UNIQUE` (`userName`),
-  KEY `fk_UserCredentials_user_idx` (`idUser`),
-  CONSTRAINT `fk_UserCredentials_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`)
+CREATE TABLE `periodicpayment` (
+  `idPeriodicPayment` int NOT NULL AUTO_INCREMENT,
+  `paymentDay` tinyint NOT NULL,
+  `ammount` decimal(18,2) NOT NULL,
+  `idOrganizationAccount` int NOT NULL,
+  `idUser` varchar(15) NOT NULL,
+  PRIMARY KEY (`idPeriodicPayment`),
+  KEY `fk_periodicPayment_user1_idx` (`idUser`),
+  KEY `fk_idOrganizationAccount_user1` (`idOrganizationAccount`),
+  CONSTRAINT `fk_idOrganizationAccount_user1` FOREIGN KEY (`idOrganizationAccount`) REFERENCES `organizationaccount` (`idOrganizationAccount`),
+  CONSTRAINT `fk_periodicPayment_user1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `credentials`
+-- Dumping data for table `periodicpayment`
 --
 
-LOCK TABLES `credentials` WRITE;
-/*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-/*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
+LOCK TABLES `periodicpayment` WRITE;
+/*!40000 ALTER TABLE `periodicpayment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `periodicpayment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:37:20
+-- Dump completed on 2023-11-27 21:48:59

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -18,27 +16,28 @@ USE `bankoom`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `gender`
+-- Table structure for table `organizationaccount`
 --
 
-DROP TABLE IF EXISTS `gender`;
+DROP TABLE IF EXISTS `organizationaccount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `gender` (
-  `idGender` tinyint NOT NULL,
-  `genderName` varchar(15) NOT NULL,
-  PRIMARY KEY (`idGender`),
-  UNIQUE KEY `idGender_UNIQUE` (`idGender`)
+CREATE TABLE `organizationaccount` (
+  `idOrganizationAccount` int NOT NULL AUTO_INCREMENT,
+  `idOrganization` varchar(45) NOT NULL,
+  `accountName` varchar(45) NOT NULL,
+  `balance` decimal(18,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`idOrganizationAccount`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `gender`
+-- Dumping data for table `organizationaccount`
 --
 
-LOCK TABLES `gender` WRITE;
-/*!40000 ALTER TABLE `gender` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gender` ENABLE KEYS */;
+LOCK TABLES `organizationaccount` WRITE;
+/*!40000 ALTER TABLE `organizationaccount` DISABLE KEYS */;
+/*!40000 ALTER TABLE `organizationaccount` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:37:21
+-- Dump completed on 2023-11-27 21:49:00

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -25,25 +23,19 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
-  `idAccount` int NOT NULL,
-  `active` varchar(45) DEFAULT NULL,
+  `idAccount` int NOT NULL AUTO_INCREMENT,
   `idStatusOfAccount` tinyint NOT NULL,
   `dateOfCreation` date NOT NULL,
-  `idUser` int DEFAULT NULL,
-  `idOrganization` int DEFAULT NULL,
-  `balance` decimal(9,2) NOT NULL,
+  `idUser` varchar(15) NOT NULL,
+  `balance` decimal(9,2) NOT NULL DEFAULT '0.00',
   `idTypeOfAccount` tinyint NOT NULL,
   PRIMARY KEY (`idAccount`),
   UNIQUE KEY `idAccount_UNIQUE` (`idAccount`),
-  KEY `fk_account_statusOfAccount1_idx` (`idStatusOfAccount`),
   KEY `fk_account_user1_idx` (`idUser`),
-  KEY `fk_account_organization1_idx` (`idOrganization`),
   KEY `fk_account_typeOfAccount1_idx` (`idTypeOfAccount`),
-  CONSTRAINT `fk_account_organization1` FOREIGN KEY (`idOrganization`) REFERENCES `organization` (`idOrganization`),
-  CONSTRAINT `fk_account_statusOfAccount1` FOREIGN KEY (`idStatusOfAccount`) REFERENCES `statusofaccount` (`idStatusOfAccount`),
   CONSTRAINT `fk_account_typeOfAccount1` FOREIGN KEY (`idTypeOfAccount`) REFERENCES `typeofaccount` (`idTypeOfAccount`),
   CONSTRAINT `fk_account_user1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,6 +44,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,1,'2023-11-13','Rixon22',0.00,1),(2,1,'2023-11-14','ZombieNerfBoy',2000.00,1);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:39:39
+-- Dump completed on 2023-11-27 21:48:59

@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `bankoom` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bankoom`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bankoom
+-- Host: 127.0.0.1    Database: bankoomuser
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -18,27 +16,29 @@ USE `bankoom`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `profession`
+-- Table structure for table `currency`
 --
 
-DROP TABLE IF EXISTS `profession`;
+DROP TABLE IF EXISTS `currency`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `profession` (
-  `idProfession` tinyint NOT NULL,
-  `professionName` varchar(25) NOT NULL,
-  PRIMARY KEY (`idProfession`),
-  UNIQUE KEY `idProfession_UNIQUE` (`idProfession`)
+CREATE TABLE `currency` (
+  `idCurrencyIso4217` varchar(3) NOT NULL,
+  `currencyName` varchar(30) NOT NULL,
+  `valueInPesos` decimal(7,2) DEFAULT NULL,
+  PRIMARY KEY (`idCurrencyIso4217`),
+  UNIQUE KEY `idCurrency_UNIQUE` (`idCurrencyIso4217`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `profession`
+-- Dumping data for table `currency`
 --
 
-LOCK TABLES `profession` WRITE;
-/*!40000 ALTER TABLE `profession` DISABLE KEYS */;
-/*!40000 ALTER TABLE `profession` ENABLE KEYS */;
+LOCK TABLES `currency` WRITE;
+/*!40000 ALTER TABLE `currency` DISABLE KEYS */;
+INSERT INTO `currency` VALUES ('EUR','Euro',22.00),('MXN','Peso mexicano',1.00),('USD','Dólar americano',18.00);
+/*!40000 ALTER TABLE `currency` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-09 20:37:21
+-- Dump completed on 2023-11-27 21:49:00
