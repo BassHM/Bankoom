@@ -2,14 +2,14 @@
     <div class="col-12">
         <h3 class="m-0">Ingresos: ${{income}} MXN</h3>
         <div class="progress m-0">
-            <div class="progress-bar" style="width:75%; background: #fff27a;">
+            <div class="progress-bar" [style]="'width:'+incomePercentege+'%; background:#fff27a;'">
             </div>
         </div>
     </div>
     <div class="col-12">
         <h3 class="m-0">Gastos: ${{expense}} MXN</h3>
         <div class="progress m-0">
-            <div class="progress-bar" style="width:25%;background:#87b1ff;">
+            <div class="progress-bar" [style]="'width:'+expensePercentege+'%; background:#87b1ff;'">
             </div>
         </div>
     </div>
