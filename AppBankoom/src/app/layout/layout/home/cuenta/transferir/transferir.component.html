@@ -10,7 +10,7 @@
             <h3 class="m-0">Cuenta de origen:</h3>
             <div class="d-flex justify-content-between">
                 <h2>{{ detalleCuenta.nombre }}</h2>
-                <h3>${{detalleCuenta.saldo}} {{detalleCuenta.monedaIsoCode}}</h3>
+                <h3>${{detalleCuenta.balance}} {{detalleCuenta.monedaIsoCode}}</h3>
             </div>
         </mat-card-content>
     </div>
@@ -25,7 +25,7 @@
         <form [formGroup]="transferirForm" (ngSubmit)="transferir()">
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Número de cuenta</mat-label>
-                <input matInput type="text" formControlName="cuentaDestino" type="number" required>
+                <input matInput type="number" formControlName="cuentaDestino" type="number" required>
             </mat-form-field>
             <div *ngIf="this.transferirForm.get('cuentaDestino')?.valid" [@fadeInOut]>
                 <hr/>
@@ -47,7 +47,7 @@
                 <hr/>
                 <div class="d-flex justify-content-center flex-column align-items-center">
 
-                    <button mat-fab type="submit" class="mb-1">
+                    <button mat-fab type="submit" class="mb-1" [disabled]="transferirButtonDisabled">
                     <mat-icon>sync_alt</mat-icon>
                 </button>
                 <h2 class="color-primario m-0">Transferir</h2>

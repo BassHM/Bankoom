@@ -1,0 +1,31 @@
+<div class="bg-primario d-flex justify-content-center pb-3 color-blanco">
+    <mat-card-header class="d-flex justify-content-center text-center">
+        <h1 class="m-0">Suscribete a un servicio y pagalo mensualmente!</h1>
+    </mat-card-header>
+</div>
+ <mat-card class="m-3">
+    <mat-card-header>
+        <mat-card-title class="d-flex flex-column">
+            <h2 class="m-0">Servicios disponibles</h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <hr/>
+        <div *ngFor="let servicio of servicios; last as isLast" class="d-flex flex-column">
+            <div class="d-flex flex-row justify-content-between">
+                <mat-label><h2 class="color-primario m-0">{{servicio.accountName}}</h2></mat-label>
+            </div>
+            
+            <hr *ngIf="!isLast"/>
+
+            <form (ngSubmit)="suscribirse(servicio.idOrganizationAccount)">
+                <div class="form-group">
+                    <label for="monto">Monto de suscripción:</label>
+                    <input type="number" class="form-control" id="monto" [(ngModel)]="servicio.monto" name="monto" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirmar suscripción</button>
+            </form>
+        </div>
+    </mat-card-content>
+ </mat-card>
+ 

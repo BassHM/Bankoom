@@ -16,13 +16,14 @@ export class LoginComponent {
   });
 
   login(): void {
-    this.loginService.userLogin(this.loginForm.value).subscribe((data) => {
+    this.loginService.userLogin(this.loginForm.value).subscribe((data: any) => {
+      // Guardar el id del usuario en el local storage
+      localStorage.setItem('idUser', data[0]);
       // Redirigir al usuario al dashboard
       this.router.navigate(['/welcome']);
-
     }, (error) => { 
       console.log(error); 
-      this.loginForm.valid!=false;
+      this.loginForm.valid != false;
     });
   }
   

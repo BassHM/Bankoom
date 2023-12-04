@@ -1,13 +1,13 @@
 <div class="bg-primario d-flex flex-row justify-content-center pt-3 color-blanco">
-    <h1>{{detallesCuenta.tipoCuenta}}</h1>
+    <h1>{{detallesCuenta.cuentaTipo}}</h1>
 </div>
 <mat-card class="m-3">
     <mat-card-content>
         <mat-card-title class="d-flex flex-column align-items-center">
-            <h2 class="m-0">{{ detallesCuenta.nombreCuenta }}</h2>
+            <h2 class="m-0">{{ detallesCuenta.nombre }}</h2>
             <h3 class="m-0">{{ detallesCuenta.numeroCuenta }}</h3>
-            <h3>Cuenta en {{ detallesCuenta.nombreMoneda }}</h3>
-            <h1>${{ detallesCuenta.balance }}</h1>
+            <h3>Moneda de la cuenta: {{ detallesCuenta.nombreMoneda }}</h3>
+            <h1>${{ detallesCuenta.balance }} {{detallesCuenta.monedaIsoCode}}</h1>
         </mat-card-title>
     </mat-card-content>
 </mat-card>
@@ -18,6 +18,12 @@
                 <mat-icon>sync_alt</mat-icon>
             </button>
             <mat-label style="color:white;">Transferir</mat-label>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <button mat-icon-button style="color:white;" (click)="navegarServicios()">
+                <mat-icon>event</mat-icon>
+            </button>
+            <mat-label style="color:white;">Servicios</mat-label>
         </div>
         <div class="d-flex flex-column align-items-center">
             <button mat-icon-button style="color:white;">
@@ -38,7 +44,7 @@
         <div *ngFor="let movimiento of ultimosMovimientos; last as isLast" class="d-flex flex-column">
             <div class="d-flex flex-row justify-content-between">
                 <mat-label><h2 class="color-primario m-0">{{movimiento.concepto}}</h2></mat-label>
-                <mat-label><h3 class="m-0">${{movimiento.monto}} {{detallesCuenta.isoMoneda}}</h3></mat-label>
+                <mat-label><h3 class="m-0 text-success" [ngClass]="{'text-danger': movimiento.monto<0}">${{movimiento.monto}} {{detallesCuenta.monedaIsoCode}}</h3></mat-label>
             </div>
             <h4 class="m-0">{{movimiento.fechaMovimiento}}</h4>
             <hr *ngIf="!isLast" />

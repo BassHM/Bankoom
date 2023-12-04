@@ -6,27 +6,27 @@
         <app-income-expense class="p-3" [income]="homeInfo.income" [expense]="homeInfo.expenses"></app-income-expense>
         <div class="bg-primario d-flex flex-row justify-content-evenly pb-4">
             <div class="d-flex flex-column align-items-center">
-                <button mat-icon-button style="color:white;">
+                <button mat-icon-button style="color:white;" (click)="goPlus()">
                     <mat-icon>add_circle</mat-icon>
                 </button>
                 <mat-label style="color:white;">Oportunidades</mat-label>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <button mat-icon-button style="color:white;">
+                <button mat-icon-button style="color:white;" (click)="goNotifications()">
                     <mat-icon>notifications</mat-icon>
                 </button>
                 <mat-label style="color:white;">Notificaciones</mat-label>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <button mat-icon-button style="color:white;">
+                <button mat-icon-button style="color:white;" (click)="goMyData()">
                     <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-label style="color:white;">Mis datos</mat-label>
             </div>
         </div>
         <div class="px-3" style="color:black; padding-bottom: 65px;">
-            <mat-card *ngFor="let cuenta of cuentas; last as isLast">
-                <mat-card-content (click)="imprimirCuenta(cuenta.cuenta)">
+            <mat-card *ngFor="let cuenta of cuentas; last as isLast" class="mb-2">
+                <mat-card-content (click)="goCuenta(cuenta.cuenta)">
                     <div class="d-flex flex-column">
                         <h3 class="m-0">{{cuenta.cuentaTipo}}</h3>
                         <div class="d-flex flex-row justify-content-between">

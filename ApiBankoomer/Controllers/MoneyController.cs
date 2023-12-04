@@ -21,15 +21,21 @@ namespace ApiBankoomer.Controllers
         [Route("PostTransfer")]
         public async Task<IActionResult> PostTransfer([FromBody] PostTransfer model)
         {
-            var sql = "call transfer(@idAccountSender, @idAccountReceiver, @amount, @concept)"; // Fixed the parameter names
+            var sql = "call transfer(@cuentaOrigen, @cuentaDestino, @monto, @concepto)"; // Fixed the parameter names
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
-            var message = await connection.QueryFirstOrDefaultAsync<string>(sql, model); // Added type parameter to QueryFirstOrDefaultAsync
+            var message = await connection.QueryFirstAsync<string>(sql, model); // Added type parameter to QueryFirstOrDefaultAsync
             if (message == "Transferencia Realizada")
-                return Ok();
+                return Ok(new TransferResponse { Message = message });
             else
-                return BadRequest(message);
+                return BadRequest(new TransferResponse { Message = message });
         }
-
+    }
+    public class getType
+    {
+    }
+    public class TransferResponse
+    {
+        public string Message { get; set; }
     }
 }
         

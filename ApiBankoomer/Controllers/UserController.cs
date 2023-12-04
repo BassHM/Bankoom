@@ -23,7 +23,7 @@ namespace ApiBankoomer.Controllers
             var sql = "SELECT idUser FROM user where idUser = @idUser and password = @password";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             var users = await connection.QueryAsync<string>(sql, new { model.idUser, model.password });
-            return users.Any() ? Ok() : NotFound();
+            return users.Any() ? Ok(users) : NotFound();
         }
         [HttpPost]
         [Route("SignInUser")]

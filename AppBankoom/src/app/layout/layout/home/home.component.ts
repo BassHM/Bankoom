@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GeneralServiceService } from '../generalService/general-service.service';
 
 @Component({
   selector: 'app-home',
@@ -9,35 +10,48 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   cuentas: any[] = [];
   homeInfo: any = {};
+  idUser: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: GeneralServiceService) { }
 
   ngOnInit(): void {
-    this.getHomeInfo();
-    this.getCuentas();
+    this.idUser = localStorage.getItem('idUser') || '';
+    if (this.idUser == '') {
+      //Navigate to the raw url
+      this.router.navigate(['']);
+    } else {
+      this.getHomeInfo();
+      this.getCuentas();
+    }
   }
   getHomeInfo(){
-    this.homeInfo={
-      nombre: 'Juan',
-      income: 1000,
-      expenses: 500,
-    }
+    this.apiService.getHomeInfo(this.idUser).subscribe((data: any) => {
+      this.homeInfo = data;
+      this.homeInfo.income = Math.round(this.homeInfo.income);
+      this.homeInfo.expenses = Math.round(this.homeInfo.expenses);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   getCuentas(){
-    this.cuentas=[
-      {
-        monedaIsoCode: 'USD',
-        cuentaTipo: 'Cuenta de Ahorros',
-        balance: 1000,
-        nombre: 'Cuenta pal mazda 3',
-        cuenta: '1234567890'
-      }
-    ];
+    this.apiService.getCuentas(this.idUser).subscribe((data: any) => {
+      this.cuentas = data;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  goPlus(){
+    this.router.navigate(['welcome/plus']);
+  }
+  goNotifications(){
+    this.router.navigate(['welcome/notifications']);
+  }
+  goMyData(){
+    this.router.navigate(['welcome/myData']);
   }
 
-
-  imprimirCuenta(cuenta: any) {
+  goCuenta(cuenta: any) {
     // Redirect with cuenta as a parameter
     this.router.navigate(['welcome/cuenta'], { queryParams: { cuenta: cuenta } });
   }

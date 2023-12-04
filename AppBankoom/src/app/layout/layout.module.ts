@@ -23,6 +23,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { CuentaComponent } from './layout/home/cuenta/cuenta.component';
 import { IncomeExpenseComponent } from './layout/home/income-expense/income-expense.component';
 import { TransferirComponent } from './layout/home/cuenta/transferir/transferir.component';
+import { MyDataComponent } from './layout/home/my-data/my-data.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NewAccountComponent } from './layout/plus/new-account/new-account.component';
+import { ServiciosComponent } from './layout/home/cuenta/servicios/servicios.component';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -31,6 +35,9 @@ import { TransferirComponent } from './layout/home/cuenta/transferir/transferir.
     PlusComponent,
     CuentaComponent,
     TransferirComponent,
+    MyDataComponent,
+    NewAccountComponent,
+    ServiciosComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +58,7 @@ import { TransferirComponent } from './layout/home/cuenta/transferir/transferir.
     MatNativeDateModule,
     MatSelectModule,
     MatIconModule,
+    MatSnackBarModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 ],

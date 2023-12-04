@@ -1,0 +1,40 @@
+<mat-card class="color-blanco">
+    <div class="bg-primario">
+        <mat-card-header class="d-flex justify-content-center">
+            <h1 class="text-center">Hola, estos son los datos que tenemos de ti:</h1>
+        </mat-card-header>
+    </div>
+</mat-card>
+<mat-card class="m-3">
+    <div>
+        <mat-card-content>
+            <div class="my-data-info">
+                <h2 style="margin-bottom: 0.5rem;">Nombre:</h2>
+                <p>{{ myData.name }}</p>
+            </div>
+            <div class="my-data-info">
+                <h2 style="margin-bottom: 0.5rem;">Email:</h2>
+                <p>{{ myData.email }}</p>
+            </div>
+            <div class="my-data-info">
+                <h2 style="margin-bottom: 0.5rem;">Teléfono:</h2>
+                <p>{{ myData.phone }}</p>
+            </div>
+            <div class="my-data-info">
+                <h2 style="margin-bottom: 0.5rem;">CURP:</h2>
+                <p>{{ myData.curp }}</p>
+            </div>
+            <div class="my-data-info">
+                <h2 style="margin-bottom: 0.5rem;">Estado de Residencia:</h2>
+                <p>{{ myData.stateOfResidence }}</p>
+            </div>
+            <div class="my-data-info">
+                <h2 style="margin-bottom: 0.5rem;">Dirección:</h2>
+                <p>{{ myData.address }}</p>
+            </div>
+        </mat-card-content>
+    </div>
+    <mat-card-footer>
+        <div class="text-center mb-1"><a mat-button color="primary" href="https://www.bbva.mx/personas/aviso-de-privacidad.html#bbva">Términos y condiciones</a></div>
+    </mat-card-footer>
+</mat-card>

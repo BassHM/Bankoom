@@ -2,9 +2,9 @@
 {
     public class PostTransfer
     {
-        public int idAccountSender { get; set; }
-        public int idAccountReceiver { get; set; }
-        public decimal amount { get; set; }
-        public string concept { get; set; }
+        public int cuentaOrigen { get; set; }
+        public int cuentaDestino { get; set; }
+        public decimal monto { get; set; }
+        public string concepto { get; set; }
     }
 }

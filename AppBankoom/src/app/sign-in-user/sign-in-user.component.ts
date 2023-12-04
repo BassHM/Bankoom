@@ -41,7 +41,7 @@ export class SignInUserComponent {
 
   minDate: Date = new Date(1900, 0, 1);//Fecha minima para el datepicker
   maxDate: Date = new Date(new Date().setFullYear(new Date().getFullYear() - 18));
-  step = 3;//Paso del formulario, en total habrá 3 pasos
+  step = 0;//Paso del formulario, en total habrá 3 pasos
   countries: country[] = [];//Lista de paises
   states: states[] = [];//Lista de estados
   selectedCountry: any; //Pais seleccionado

@@ -1,1 +1,23 @@
-<p>notifications works!</p>
+<mat-card>
+    <div class="bg-primario color-blanco">
+        <mat-card-header class="d-flex justify-content-center">
+            <h1>Notificaciones</h1>
+        </mat-card-header>
+    </div>
+</mat-card>
+<mat-card class="m-3" *ngFor="let notificacion of notificaciones">
+    <mat-card-header class="row">
+        <div class="col-8">
+            <h2 class="color-primario mb-0 lh-1">{{notificacion.descripcion}}</h2>
+        </div>
+        <div class="col-4">
+            <h3 class="d-flex justify-content-end m-0">{{notificacion.monto}}</h3>
+        </div>
+    </mat-card-header>
+    <mat-card-content class="row">
+        <div class="col-12">
+            <h4 class="m-0">{{notificacion.fecha}}</h4>
+        </div>
+    </mat-card-content>
+
+</mat-card>
