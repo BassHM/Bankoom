@@ -1,0 +1,71 @@
+<!-- organization-details.component.html -->
+<mat-card class="m-5">
+    <mat-card-header class="bg-primario">
+      <h1 class="color-blanco">Detalles de la Organización</h1>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <div>
+        <mat-card-content class="pb-3">
+            <h2>Añadir cuenta</h2>
+            <form (submit)="insertOrganizationAccount()">
+                <div>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Nombre de la Cuenta:</mat-label>
+                    <input matInput [(ngModel)]="newOrganizationAccount.accountName" name="accountName" required pattern="^\S+$" required>
+                  </mat-form-field>
+              
+                  <mat-form-field appearance="fill">
+                    <mat-label>Saldo:</mat-label>
+                    <input matInput [(ngModel)]="newOrganizationAccount.balance" name="balance" type="number" required>
+                  </mat-form-field>
+              
+                  <!-- Optionally, include a checkbox for the 'active' field -->
+                  <mat-checkbox [checked]="newOrganizationAccount.active == 1 ? true : false" (change)="newOrganizationAccount.active = newOrganizationAccount.active === 1 ? 0 : 1">Activa</mat-checkbox>
+                </div>
+                <button mat-raised-button type="submit" color="primary">Añadir Cuenta</button>
+              </form>
+        </mat-card-content>
+        <mat-card>
+            <mat-card-content>
+                <h2>Cuentas de la Organización</h2>
+
+        <table mat-table [dataSource]="organizationAccounts">
+          <ng-container matColumnDef="idOrganizationAccount">
+            <th mat-header-cell *matHeaderCellDef>ID de Cuenta</th>
+            <td mat-cell *matCellDef="let account">{{ account.idOrganizationAccount }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="accountName">
+            <th mat-header-cell *matHeaderCellDef>Nombre de la Cuenta</th>
+            <td mat-cell *matCellDef="let account">{{ account.accountName }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef>Saldo</th>
+            <td mat-cell *matCellDef="let account">{{ account.balance }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef>Activa</th>
+            <td mat-cell *matCellDef="let account">{{ account.active ? 'Sí' : 'No' }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let account">
+                <button mat-raised-button (click)="deactivateOrganizationAccount(account.idOrganizationAccount, account.active == 1? 0: 1)" [ngClass]="{'warn': account.active == 1, 'primary': account.active == 0}">
+                    {{account.active == 1 ? 'Desactivar' : 'Activar'}}
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="['idOrganizationAccount', 'accountName', 'balance', 'active', 'actions']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['idOrganizationAccount', 'accountName', 'balance', 'active', 'actions']"></tr>
+        </table>
+            </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

@@ -30,9 +30,6 @@ namespace ApiBankoomer.Controllers
                 return BadRequest(new TransferResponse { Message = message });
         }
     }
-    public class getType
-    {
-    }
     public class TransferResponse
     {
         public string Message { get; set; }

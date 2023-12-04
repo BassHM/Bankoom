@@ -27,6 +27,7 @@ import { MyDataComponent } from './layout/home/my-data/my-data.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NewAccountComponent } from './layout/plus/new-account/new-account.component';
 import { ServiciosComponent } from './layout/home/cuenta/servicios/servicios.component';
+import { EstadoDeCuentaComponent } from './layout/home/cuenta/estado-de-cuenta/estado-de-cuenta.component';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -38,6 +39,7 @@ import { ServiciosComponent } from './layout/home/cuenta/servicios/servicios.com
     MyDataComponent,
     NewAccountComponent,
     ServiciosComponent,
+    EstadoDeCuentaComponent,
   ],
   imports: [
     CommonModule,

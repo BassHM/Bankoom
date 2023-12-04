@@ -1,0 +1,86 @@
+<!-- organization-list.component.html -->
+<mat-card class="m-5">
+    <mat-card-header class="bg-primario">
+        <h1 class="color-blanco">Panel Maestro</h1>
+    </mat-card-header>
+    <mat-card-content>
+
+        <mat-card-content class="pb-3">
+            <h2 class="">Añadir Organización</h2>
+            <form (submit)="insertOrganization()">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>ID:</mat-label>
+                        <input matInput [(ngModel)]="newOrganization.idOrganization" name="idOrganization" required pattern="^\S+$" required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Password:</mat-label>
+                        <input matInput [(ngModel)]="newOrganization.password" name="password" required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Comercial Name:</mat-label>
+                        <input matInput [(ngModel)]="newOrganization.comercialName" name="comercialName" required>
+                    </mat-form-field>
+
+                    <!-- organization-details.component.html -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>ID State:</mat-label>
+                        <mat-select [(ngModel)]="newOrganization.idState" name="idState" required>
+                            <mat-option *ngFor="let state of states" [value]="state.idState">
+                                {{ state.stateName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+                <button mat-raised-button type="submit" color="primary">Add Organization</button>
+
+            </form>
+        </mat-card-content>
+
+
+        <mat-card>
+            <mat-card-content>
+                <div>
+                    <h2>Organizaciones</h2>
+                    <table mat-table [dataSource]="organizations">
+                        <ng-container matColumnDef="idOrganization">
+                            <th mat-header-cell *matHeaderCellDef>ID</th>
+                            <td mat-cell *matCellDef="let org">{{ org.idOrganization }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="password">
+                            <th mat-header-cell *matHeaderCellDef>Password</th>
+                            <td mat-cell *matCellDef="let org">{{ org.password }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="comercialName">
+                            <th mat-header-cell *matHeaderCellDef>Comercial Name</th>
+                            <td mat-cell *matCellDef="let org">{{ org.comercialName }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="idState">
+                            <th mat-header-cell *matHeaderCellDef>ID State</th>
+                            <td mat-cell *matCellDef="let org">{{ org.idState }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="viewDetails">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let org">
+                                <a [routerLink]="['/organization-details', org.idOrganization]">View Details</a>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row
+                            *matHeaderRowDef="['idOrganization', 'password', 'comercialName', 'idState', 'viewDetails']">
+                        </tr>
+                        <tr mat-row
+                            *matRowDef="let row; columns: ['idOrganization', 'password', 'comercialName', 'idState', 'viewDetails']">
+                        </tr>
+                    </table>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

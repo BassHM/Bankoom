@@ -16,15 +16,16 @@
                 <mat-label><h2 class="color-primario m-0">{{servicio.accountName}}</h2></mat-label>
             </div>
             
-            <hr *ngIf="!isLast"/>
 
-            <form (ngSubmit)="suscribirse(servicio.idOrganizationAccount)">
-                <div class="form-group">
-                    <label for="monto">Monto de suscripción:</label>
-                    <input type="number" class="form-control" id="monto" [(ngModel)]="servicio.monto" name="monto" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Confirmar suscripción</button>
+            <form (ngSubmit)="suscribirse(servicio.idOrganizationAccount, servicio.monto)">
+                    <div class="d-flex justify-content-between">
+                            <mat-form-field class="d-flex flex-column justify-content-evenly align-content-center">
+                                <input matInput placeholder="$ Monto en pesos" type="number" class="form-control" id="monto" [(ngModel)]="servicio.monto" name="monto" required>
+                            </mat-form-field>      
+                            <button mat-raised-button color="primary" class="align-self-center p-3 ">Confirmar</button>
+                    </div>   
             </form>
+            <hr *ngIf="!isLast"/>
         </div>
     </mat-card-content>
  </mat-card>

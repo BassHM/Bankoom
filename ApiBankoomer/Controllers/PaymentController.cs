@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using ApiBankoomer.Models;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Collections;
@@ -24,6 +25,18 @@ namespace ApiBankoomer.Controllers
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             var response = await connection.QueryAsync(sql);
             return Ok(response);
+        }
+        [HttpPost]
+        [Route("SignToPeriodic")]
+        public async Task<IActionResult> SignToPeriodic([FromBody] Models.SignPeriodicPayment model)
+        {
+            var sql = "call signPeriodic(@idOrganizationAccount, @idAccount, @amount)";
+            using var connection = new MySqlConnection(_connectionString.ConnectionString);
+            string message = await connection.QueryFirstAsync<string>(sql, model );
+            if (message == "Suscripción creada correctamente :D")
+                return Ok(new TransferResponse { Message = message });
+            else
+                return BadRequest(new TransferResponse { Message = message });
         }
     }
 }

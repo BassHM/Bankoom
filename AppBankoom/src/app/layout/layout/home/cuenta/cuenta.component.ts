@@ -17,6 +17,7 @@ export class CuentaComponent implements OnInit{
       this.obtenerUltimosMovimientos();
   }
   obtenerCuenta(){
+    
     this.apiService.getCuenta(this.cuenta).subscribe((data: any) => {
       this.detallesCuenta = data;
     }, (error) => {
@@ -35,5 +36,8 @@ export class CuentaComponent implements OnInit{
   }
   navegarServicios() {
     this.router.navigate(['welcome/cuenta/servicios'], { queryParams: { cuenta: this.cuenta } });
+  }
+  descargarPDF(){
+    this.router.navigate(['welcome/cuenta/estado-de-cuenta'], { queryParams: { cuenta: this.cuenta } });
   }
 }

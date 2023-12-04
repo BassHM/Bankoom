@@ -1,0 +1,70 @@
+<div id="htmlData">
+    <h2>Información del Usuario</h2>
+    <table class="table table-bordered mt-4">
+        <tr class="table-primary">
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Número de teléfono</th>
+            <th>CURP</th>
+            <th>Dirección</th>
+        </tr>
+        <tr *ngFor="let user of report.infoUsuario">
+            <th>{{user.name}}</th>
+            <td>{{user.email}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.curp}}</td>
+            <td>{{user.adress}}</td>
+        </tr>
+    </table>
+    <h2>Información de la Cuenta</h2>
+    <table class="table table-bordered mt-4">
+        <tr class="table-primary">
+            <th>Nombre</th>
+            <th>Cuenta</th>
+            <th>Balance</th>
+            <th>Tipo de Cuenta</th>
+            <th>Moneda ISO Code</th>
+            <th>Nombre Moneda</th>
+        </tr>
+        <tr *ngFor="let cuenta of report.infoCuenta">
+            <th>{{cuenta.nombre}}</th>
+            <td>{{cuenta.cuenta}}</td>
+            <td>{{cuenta.balance}}</td>
+            <td>{{cuenta.cuentaTipo}}</td>
+            <td>{{cuenta.monedaIsoCode}}</td>
+            <td>{{cuenta.nombreMoneda}}</td>
+        </tr>
+    </table>
+
+    <h2>Transferencias</h2>
+    <table class="table table-bordered mt-4">
+        <tr class="table-primary">
+            <th>Tipo</th>
+            <th>Concepto</th>
+            <th>Fecha de Movimiento</th>
+            <th>Monto</th>
+        </tr>
+        <tr *ngFor="let transferencia of report.transferencias">
+            <th>{{transferencia.tipo}}</th>
+            <td>{{transferencia.concepto}}</td>
+            <td>{{transferencia.fechaMovimiento}}</td>
+            <td>{{transferencia.monto}}</td>
+        </tr>
+    </table>
+
+    <h2>Pagos</h2>
+    <table class="table table-bordered mt-4">
+        <tr class="table-primary">
+            <th>Tipo</th>
+            <th>Concepto</th>
+            <th>Fecha de Movimiento</th>
+            <th>Monto</th>
+        </tr>
+        <tr *ngFor="let pago of report.pagos">
+            <th>{{pago.tipo}}</th>
+            <td>{{pago.concepto}}</td>
+            <td>{{pago.fechaMovimiento}}</td>
+            <td>{{pago.monto}}</td>
+        </tr>
+    </table>
+</div>

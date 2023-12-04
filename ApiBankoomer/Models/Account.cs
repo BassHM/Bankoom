@@ -28,4 +28,9 @@
         public string nombre { get; set; }
         public decimal montoInicial { get; set; }
     }
+    public class estadoDeCuenta
+    {
+        public int idAccount { get; set; }
+        public string idUser { get; set; }
+    }
 }

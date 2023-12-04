@@ -91,6 +91,22 @@ namespace ApiBankoomer.Controllers
             var affectedRows = await connection.ExecuteAsync(sql, model); // Added type parameter to QueryFirstOrDefaultAsync
             return affectedRows == 1 ? Ok() : BadRequest();
         }
+        [HttpPost]
+        [Route("EstadoDeCuenta")]
+        public async Task<IActionResult> EstadoDeCuenta([FromBody] estadoDeCuenta model)
+        {
+            using var connection = new MySqlConnection(_connectionString.ConnectionString);
+
+            string qInfoUsuario = "SELECT concat(u.name, ' ', lastName, ' ', secondLastName) as name, email, phoneNumber, curp, concat(adress, ', ', postalCode, '. ', s.StateName, ', ', c.countryName, '.') as adress FROM user u join state s on u.idState = s.idState join country c on c.idCountry = s.idCountry where idUser = @idUser;";
+            var infoUsuario = await connection.QueryAsync(qInfoUsuario, model);
+            string qInfoCuenta = "select case when accountName != '' then accountName else concat(typeOfAccountDescription, ' (', idAccount, ')') end as nombre, idAccount as cuenta, balance, typeOfAccountDescription as cuentaTipo, typeofaccount.idCurrencyIso4217 as monedaIsoCode, currencyName as nombreMoneda from account join typeofaccount on typeofaccount.idTypeOfAccount = account.idTypeOfAccount join currency on currency.idCurrencyIso4217 = typeofaccount.idCurrencyIso4217 where idAccount = @idAccount;";
+            var infoCuenta = await connection.QueryAsync(qInfoCuenta, model);
+            string qTransferencias = " SELECT 'Transferencias realizadas y recibidas' as tipo, concept AS concepto, DATE_FORMAT(dateOfTransfer, '%d/%m/%Y %H:%i') AS fechaMovimiento, case when idAccountSender = @idAccount then round((-1*amount)/(select valueInPesos from currency c join typeOfAccount toa on toa.idCurrencyIso4217 = c.idCurrencyIso4217 join account a on a.idTypeOfAccount = toa.idTypeOfAccount where a.idAccount = @idAccount),2) else round(amount/(select valueInPesos from currency c join typeOfAccount toa on toa.idCurrencyIso4217 = c.idCurrencyIso4217 join account a on a.idTypeOfAccount = toa.idTypeOfAccount where a.idAccount = @idAccount),2) end AS monto FROM transfer WHERE idAccountSender = @idAccount or idAccountReceiver = @idAccount;";
+            var transferencias = await connection.QueryAsync(qTransferencias, model);
+            string qPagos = "SELECT 'Pago a servicio' as tipo, concat(oa.accountName) as concepto, DATE_FORMAT(p.dateOfPayment, '%d/%m/%Y %H:%i') AS fechaMovimiento, round((-1*pp.amount)/(select valueInPesos from currency c join typeOfAccount toa on toa.idCurrencyIso4217 = c.idCurrencyIso4217 join account a on a.idTypeOfAccount = toa.idTypeOfAccount where a.idAccount = @idAccount),2) as monto FROM payment p join periodicPayment pp on pp.idPeriodicPayment = p.idPeriodicPayment join organizationAccount oa on oa.idOrganizationAccount = pp.idOrganizationAccount join account a on a.idAccount = pp.idAccount where a.idAccount = @idAccount;";
+            var pagos = await connection.QueryAsync(qPagos, model);
+            return infoUsuario != null ? Ok(new { infoUsuario, infoCuenta, transferencias, pagos }) : NotFound();
+        }
     }
 }
         

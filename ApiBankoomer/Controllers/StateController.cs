@@ -19,7 +19,7 @@ namespace ApiBankoomer.Controllers
         [Route("PostState")]
         public async Task<IActionResult> PostState([FromBody] PostState postState)
         {
-            var sql = "INSERT INTO state (stateName, idCountry) VALUES (@name, @idcontri)";
+            var sql = "INSERT INTO `bankoomorganization`.state (stateName, idCountry) VALUES (@name, @idcontri)";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             //--------------------------------------------------------------------------------Al parecer necesitan llamarse diferente
             var result = await connection.ExecuteAsync(sql, new { name = postState.stateName, idcontri = postState.idCountry });

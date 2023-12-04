@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
+export interface Organization {
+  idOrganization: string;
+  password: string;
+  comercialName: string;
+  idState: number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +22,10 @@ export class GeneralServiceService {
   }
   getHomeInfo(idUser: string){
     return this.httpClient.get(`${this.apiUrl}Account/GetHomeInfo/${idUser}`);
+  }
+  // Usario
+  getUserInfo(idUser: string){
+    return this.httpClient.get(`${this.apiUrl}User/GetUserInfo/${idUser}`);
   }
   // Cuenta
   getCuenta(idAccount: string){
@@ -41,4 +52,15 @@ export class GeneralServiceService {
   getServicios(){
     return this.httpClient.get(`${this.apiUrl}Payment/GetPeriodicPayments`);
   }
+  postSuscribirse(params: any){
+    return this.httpClient.post(`${this.apiUrl}Payment/SignToPeriodic`, params);
+  }
+  // Notificaciones
+  getNotifications(idUser: string){
+    return this.httpClient.get(`${this.apiUrl}User/GetNotificaciones/${idUser}`);
+  }
+  getEstadoDeCuenta(params: any){
+    return this.httpClient.post(`${this.apiUrl}Account/EstadoDeCuenta`, params);
+  }
+  
 }

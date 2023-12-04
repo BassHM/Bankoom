@@ -8,6 +8,7 @@ import { TransferirComponent } from './layout/home/cuenta/transferir/transferir.
 import { MyDataComponent } from './layout/home/my-data/my-data.component';
 import { NewAccountComponent } from './layout/plus/new-account/new-account.component';
 import { ServiciosComponent } from './layout/home/cuenta/servicios/servicios.component';
+import { EstadoDeCuentaComponent } from './layout/home/cuenta/estado-de-cuenta/estado-de-cuenta.component';
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent,
@@ -26,13 +27,17 @@ const routes: Routes = [
   },
   {
     path: 'cuenta/servicios', component: ServiciosComponent
+  },
+  {
+    path: 'cuenta/estado-de-cuenta', component: EstadoDeCuentaComponent
   }
   ,{
     path: 'myData', component: MyDataComponent
   },
   {
     path: 'plus/newAccount', component: NewAccountComponent
-  }
+  },
+  
 
 ];
 

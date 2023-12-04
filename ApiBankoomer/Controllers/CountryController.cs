@@ -55,7 +55,7 @@ namespace ApiBankoomer.Controllers
         [Route("PostCountry")]
         public async Task<IActionResult> PostCountry([FromBody] Models.PostCountry postCountry)
         {
-            var sql = "INSERT INTO country (countryName) VALUES (@countryName)";
+            var sql = "INSERT INTO `bankoomorganization`.country (countryName) VALUES (@countryName)";
             using var connection = new MySqlConnection(_connectionString.ConnectionString);
             var result = await connection.ExecuteAsync(sql, postCountry);
             //Si las filas afectadas es mayor a 0 entonces ok, si no pues un bad request

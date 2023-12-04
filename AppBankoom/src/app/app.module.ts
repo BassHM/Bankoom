@@ -19,11 +19,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { OrganizationComponent } from './organizationCrud/organization/organization.component';
+import {MatTableModule} from '@angular/material/table';
+import { OrganizationDetailsComponent } from './organizationCrud/organization/organization-details/organization-details.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignInUserComponent,
+    OrganizationComponent,
+    OrganizationDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +52,8 @@ import { RouterModule } from '@angular/router';
     MatNativeDateModule,
     MatSelectModule,
     MatIconModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 ],
